@@ -6,7 +6,7 @@ on:
 jobs:
   macos_build:
     name: Build MeshLab (MacOS)
-    runs-on: macos-latest
+    runs-on: macos-11
     strategy:
       matrix:
         precision: [single_precision, double_precision]
