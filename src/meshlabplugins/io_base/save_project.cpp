@@ -19,13 +19,13 @@ QDomElement matrix44mToXML(const Matrix44m &m, bool binary, QDomDocument &doc)
 	QDomText nd;
 	if (binary) {
 		QByteArray value = QByteArray::fromRawData((char *)m.V(), sizeof(Matrix44m::ScalarType) * 16).toBase64();
-		QDomText nd = doc.createTextNode(QString(value));
+		nd = doc.createTextNode(QString(value));
 	}
 	else {
 		std::ostringstream matrix;
 		std::copy(m.V(), m.V() + 16u,
 			std::ostream_iterator<Matrix44m::ScalarType>(matrix, " "));
-			//std::experimental::make_ostream_joiner(matrix, ", ")); // with <experimental/iterator>
+			//std::experimental::make_ostream_joiner(matrix, " ")); // with <experimental/iterator>
 		nd = doc.createTextNode(QString(matrix.str().c_str()));
 	}
 	matrixElem.appendChild(nd);
